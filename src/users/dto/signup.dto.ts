@@ -1,5 +1,5 @@
 import { DefaultValuePipe } from "@nestjs/common"
-import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator"
+import { IsBoolean, IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator"
 
 export class SignupDto {
     @IsNotEmpty()
@@ -13,10 +13,10 @@ export class SignupDto {
 
     @IsNotEmpty()
     @IsString()
+    @MinLength(5)
     password: string
 
     @IsNotEmpty()
-    @IsString()
-    @MinLength(5)
+    @IsBoolean()
     active: boolean
 }

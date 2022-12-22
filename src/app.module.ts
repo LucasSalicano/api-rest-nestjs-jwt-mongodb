@@ -1,13 +1,14 @@
+import { MongooseModule } from '@nestjs/mongoose';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { databaseProviders } from 'src/database/database.provider';
 
 @Module({
-  imports: [UsersModule, AuthModule],
+  imports: [UsersModule, AuthModule, MongooseModule.forRoot(process.env.DATABASE_URI)],
   controllers: [AppController],
-  providers: [AppService, ...databaseProviders],
+  providers: [AppService],
 })
+
 export class AppModule { }
